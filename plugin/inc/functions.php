@@ -10,13 +10,17 @@ __FILE__));
 add_action( 'wp_enqueue_scripts',
 'TDS_Plugin_Styles' );
 
-//This code sets up the plugin's name. This is needed to program a custom widget.
-class TDSContentFilterPlugin extends WP_Plugin {
-//This code constructs the plugin as a whole (classes, settings, forms, displays). Plugin actual processes. 
-	function __construct() {
-		// Adds a class to the plugin and provides a description on the plugin page to describe what the plugin does for the user. These are plugin settings.  
-		$plugin_ops = array('classname' => 'tds_content_filter', 'description' => __( 'A way to filter information', 'TDS') );
-		// Builds the plugin itself and gives it a name, "Content Filter". This means that it is calling the constructor of the parent class as well. 
-		parent::__construct('about_me', __('Content Filter', 'TDS'), $plugin_ops);
-	}
+// Creates the function
+function my_super_awesome_plugin(){
+	ADD THE CODE FOR YOUR PLUGIN
+	HERE.
+}
 
+// Activates the function
+add_action( 'hook_name',
+'your_function', [priority], [args]
+);
+
+// Activates the function in the content area
+add_action( 'wp_content',
+'happy_tails_plugin');
