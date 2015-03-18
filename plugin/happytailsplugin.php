@@ -11,7 +11,7 @@
 
 function tds_happytails_add_admin_menu(  ) { 
 
-	add_menu_page( 'Happy Tails Plugin', 'Happy Tails Plugin', 'manage_options', 'happy_tails_plugin', 'happy_tails_plugin_options_page', 'dashicons-hammer', 66 );
+	add_menu_page( 'Happy Tails Plugin', 'Happy Tails Plugin', 'manage_options', 'happy_tails_plugin', 'happy_tails_plugin_options_page', 'dashicons-admin-tools', 66 );
 
 }
 
