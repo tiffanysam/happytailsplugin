@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<?php
+	// The following code pulls the stylesheet (style.css) to this page. This allows the CSS information to be located in a different area then the main php page.
+	add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' ); 
+	// The wp_enqueue_scripts action can be used for both CSS and Javascript files.
+    function safely_add_stylesheet() {
+    wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
+?>
+
     <title>Using Underscore Templates</title>
-    <style type="text/css">
-    .studentRec {
-      border: 1px solid #777;
-      margin: 4pt;
-      padding: 4pt;
-      font-size: 14pt;
-      background-color: #ccc;
-    }
-    .passingStudent {
-      background-color: lightGreen;
-    }
-    .failingStudent {
-      background-color: pink;
-    }
-    </style>
+
     <script type="text/javascript" src="../underscore.js"></script>
     <script type="text/javascript" src="../SampleData.js"></script>
     <script type="text/javascript">
+	
+	var myTemplateAsString=toHTMLWithData(Template.myTemplate,dataContext);
+
     function appendTemplateData(dataString) {
         var container = document.getElementById("container");
         container.innerHTML = container.innerHTML + dataString;
     }
     
-	//var templateString = "<div><span>Name: <%= lastname %></span></div>";
-	//var templateString2 = "<div><span>Name: <% print(lastname.toUpperCase()) %></span></div>";
-	
-	var studentInfo1 = "<% _.each(students, function(item) { %>" + 
+	// var templateString = "<div><span>Name: <%= lastname %></span></div>";
+    // var templateString2 = "<div><span>Name: <% print(lastname.toUpperCase()) %></span></div>";
+
+    var studentInfo1 = "<% _.each(students, function(item) { %>" + 
                       "<div class='studentRec " +
                       "<% (item.midterm_score + item.final_score) / 2 > 65 ? print('passingStudent') : print('failingStudent') %>'>" +
                       "<span style='font-weight:bold'>Name:</span> <span><%= item.lastname %>, <%= item.firstname %> </span>" +
                       "<span style='font-weight:bold'>School:</span> <span><%= item.school %></span></div>" +
-                      "<% }); %>";
-    
+                      "<% }); %>";	
+					  
+	var studentInfo2 = "<% var grouped = _.groupBy(students, function(item) {return item.school;}); " +
+                      "for (i in grouped) { _.each(grouped[i], function(item) { %>" + 
+                      "<div class='studentRec " +
+                      "<% (item.midterm_score + item.final_score) / 2 > 65 ? print('passingStudent') : print('failingStudent') %>'>" +
+                      "<span style='font-weight:bold'>Name:</span> <span><%= item.lastname %>, <%= item.firstname %> </span>" +
+                      "<span style='font-weight:bold'>School:</span> <span><%= item.school %></span></div>" +
+                      "<% })}; %>";
+	
     window.addEventListener("load", function(e) {
-	//var compiledTemplate = _.template(templateString);
-	//var compiledTemplate = _.template(templateString2);
-
-
-	// now we can call the template with different data
-      //var result = compiledTemplate({
-        //lastname: "Hossenfeffer"
-      //});
-	  
-	  // to perform a one-off template operation, just pass in the data object 
-      // as the second parameter to the template
-      var result = _.template(studentInfo1, students);
-	  
-	  appendTemplateData(result);
+		//var compiledTemplate = _.template(templateString);
+		//var compiledTemplate = _.template(templateString2);
+//
+		// // now we can call the template with different data
+		// var result = compiledTemplate({
+		// lastname: "Hossenfeffer"
+		// });
+		
+		// to perform a one-off template operation, just pass in the data object 
+        // as the second parameter to the template
+        var result = _.template(studentInfo1, students);
+		
+		appendTemplateData(result);
+		
     });
     </script>
 </head>

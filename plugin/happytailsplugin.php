@@ -1,17 +1,17 @@
 <?php
 /*
  * Plugin Name: Happy Tails Plugin
- * Plugin URI: http://TDS.com
- * Description: This is my happytails plugin
+ * Plugin URI: http://phoenix.sheridan.on.ca/~ccit2662
+ * Description: This is the Happy Tails plugin
  * Author: Code Diva
  * Version: 1.0
- * Author URI: http://TDS.com
+ * Author URI: http://phoenix.sheridanc.on.ca/~ccit2662
  */
 
 
 function tds_happytails_add_admin_menu(  ) { 
 
-	add_menu_page( 'Happy Tails Plugin', 'Happy Tails Plugin', 'manage_options', 'happy_tails_plugin', 'happy_tails_plugin_options_page', 'dashicons-admin-tools', 66 );
+	add_menu_page( 'Happy Tails Plugin', 'Happy Tails Plugin', 'manage_options', 'happy_tails_plugin', 'happy_tails_plugin_options_page', 'dashicons-admin-network', 66 );
 
 }
 
@@ -29,16 +29,24 @@ function tds_happytails_settings_init(  ) {
 
 	add_settings_field( 
 		'tds_happytails_text_field_0', 
-		__( 'Enter content into the text box', 'TDS' ), 
+		__( 'Enter name', 'TDS' ), 
 		'tds_happytails_text_field_0_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
 
 	add_settings_field( 
-		'tds_happytails_checkbox_field_1', 
-		__( 'Check your preference', 'TDS' ), 
-		'tds_happytails_checkbox_field_1_render', 
+		'tds_happytails_text_field_1', 
+		__( 'Enter age', 'TDS' ), 
+		'tds_happytails_text_field_0_render', 
+		'plugin_page', 
+		'tds_happytails_plugin_page_section' 
+	);
+	
+	add_settings_field( 
+		'tds_happytails_text_field_', 
+		__( 'Enter breed', 'TDS' ), 
+		'tds_happytails_text_field_0_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
@@ -141,14 +149,13 @@ add_action( 'admin_menu', 'tds_happytails_add_admin_menu' );
 add_action( 'admin_init', 'tds_happytails_settings_init' );	
 
 
-
 function happy_tails_plugin_callit(){
 	$options = get_option( 'tds_happytails_settings' );
-	echo '<img src="' . $options['tds_happytails_text_field_0'] . '" />';
-	echo '<p>Checkbox: ' . $options['tds_happytails_checkbox_field_1'] . '</p>';
-	echo '<p>Radio: ' . $options['tds_happytails_radio_field_2'] . '</p>';
-	echo '<p>Textarea: ' . $options['tds_happytails_textarea_field_3'] . '</p>';
-	echo '<p>Select: ' . $options['tds_happytails_select_field_4'] . '</p>';
+	echo '<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSAfCcSQgVQYMjN9VkGe1cOSHppXtd8uUNcwiyzSlJVrFDBzN954w4T0DI"' . $options['tds_happytails_text_field_0'] . '" />';
+	echo '<p>Name: ' . $options['tds_happytails_checkbox_field_1'] . '</p>';
+	echo '<p>Age: ' . $options['tds_happytails_radio_field_2'] . '</p>';
+	echo '<p>Breed: ' . $options['tds_happytails_textarea_field_3'] . '</p>';
+	echo '<p>Size: ' . $options['tds_happytails_select_field_4'] . '</p>';
 }	
 
 add_filter('the_content', 'happy_tails_plugin_callit');	
