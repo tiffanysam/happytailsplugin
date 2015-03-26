@@ -10,10 +10,14 @@
     wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
 ?>
 
-    <title>Using Underscore Templates</title>
+    <title>Using Underscores Templates</title>
 
     <script type="text/javascript" src="../underscore.js"></script>
     <script type="text/javascript" src="../SampleData.js"></script>
+		<script type="text/javascript">
+			var student = 'Hello World';
+			document.write(hello);
+		</script>
     <script type="text/javascript">
 	
 	var myTemplateAsString=toHTMLWithData(Template.myTemplate,dataContext);

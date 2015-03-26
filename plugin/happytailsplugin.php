@@ -8,6 +8,13 @@
  * Author URI: http://phoenix.sheridanc.on.ca/~ccit2662
  */
 
+// Add Self-Closing Shortcode
+function my_shortcode() {
+return "<p>I&apos;m a super-awesome
+shortcode coder</p>";
+}
+add_shortcode( 'my_shortcode',
+'my_shortcode' );.
 
 function tds_happytails_add_admin_menu(  ) { 
 
