@@ -5,14 +5,6 @@
     <script type="text/javascript" src="../underscore.js"></script>
     <script type="text/javascript" src="../SampleData.js"></script>
     <script type="text/javascript">
-    function getPassingStudents(elem) {
-    	return ((elem.midterm_score + elem.final_score) / 2 > 65);
-    }
-	
-	    // check to see if a student did better on their final than on their midterm
-    function checkImprovement(item) {
-        return item.final_score > item.midterm_score;
-    }
 	
     window.addEventListener("load", function(e) {
 	  	/* use the filter() function to narrow down the list */

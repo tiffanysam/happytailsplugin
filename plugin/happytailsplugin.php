@@ -10,7 +10,7 @@
 
 // Add Self-Closing Shortcode
 function my_shortcode() {
-return "<p>I&apos;m a super-awesome
+return "<p>I&apos;m a happy-tails
 shortcode coder</p>";
 }
 add_shortcode( 'my_shortcode',
@@ -36,27 +36,27 @@ function tds_happytails_settings_init(  ) {
 // Creates fields in the back end for the user to enter characteristics of the pet. The user can enter these characteristics in the fields and it will be displayed on the site.
 // This is the field for inputting the name of the pet	
 	add_settings_field( 
-		'tds_happytails_text_field_0', 
+		'tds_happytails_textarea_field_0', 
 		__( 'Enter name', 'TDS' ), 
-		'tds_happytails_text_field_0_render', 
+		'tds_happytails_textarea_field_0_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
 
 // This is the field for inputting the age of the pet.	
 	add_settings_field( 
-		'tds_happytails_text_field_1', 
+		'tds_happytails_textarea_field_1', 
 		__( 'Enter age', 'TDS' ), 
-		'tds_happytails_text_field_0_render', 
+		'tds_happytails_textarea_field__render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
 
 // This is the field for inputting the name of the pet. There are two options (female or male) that appear as radio buttons so the user can only choose one.
 	add_settings_field( 
-		'tds_happytails_radio_field_2', 
+		'tds_happytails_select_field_2', 
 		__( 'Choose gender', 'TDS' ), 
-		'tds_happytails_radio_field_2_render', 
+		'tds_happytails_select_field_2_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
@@ -81,29 +81,40 @@ function tds_happytails_settings_init(  ) {
 
 }
 
-function tds_happytails_text_field_0_render() { 
+function tds_happytails_textarea_field_0_render() { 
+	// Get the options
 	$options = get_option( 'tds_happytails_settings' );
 	?>
-	<input type="text" name="tds_happytails_settings[tds_happytails_text_field_0]" value="<?php if (isset($options['tds_happytails_text_field_0'])) echo $options['tds_happytails_text_field_0']; ?>">
+	<textarea cols="40" rows="5" name="tds_happytails_settings[tds_happytails_textarea_field_3]"> 
+		<?php if (isset($options['tds_happytails_textarea_field_0'])) echo $options['tds_happytails_textarea_field_0']; ?>
+ 	</textarea>
 	<?php
 }
 
-function tds_happytails_checkbox_field_1_render() { 
+function tds_happytails_textarea_field_1_render() { 
+	// Get the options
 	$options = get_option( 'tds_happytails_settings' );
 	?>
-	<input type="checkbox" name="tds_happytails_settings[tds_happytails_checkbox_field_1]" <?php if (isset($options['tds_happytails_checkbox_field_1'])) checked( $options['tds_happytails_checkbox_field_1'], 1 ); ?> value="">
+	<textarea cols="40" rows="5" name="tds_happytails_settings[tds_happytails_textarea_field_1]"> 
+		<?php if (isset($options['tds_happytails_textarea_field_1'])) echo $options['tds_happytails_textarea_field_1']; ?>
+ 	</textarea>
 	<?php
 }
 
-// This shows the radio button values (gender) and tells the plugin to display the value of the chosen radio button in the front end.
-function tds_happytails_radio_field_2_render() { 
+// This shows the three values in the dropdown menu.
+function tds_happytails_select_field_2_render() { 
 	$options = get_option( 'tds_happytails_settings' );
 	?>
-	<input type="radio" name="tds_happytails_settings[tds_happytails_radio_field_2]" value="female"> <?php if (isset($options['tds_happytails_radio_field_2'])) checked( $options['tds_happytails_radio_field_2'], 1 ); ?> value="<?php if (isset($options['tds_happytails_text_field_0'])) echo $options['tds_happytails_radio_field_2']; ?>">
-	<?php
+	<select name="tds_happytails_settings[tds_happytails_select_field_2]">
+		<option value="1" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 1 ); ?>>Male</option>
+		<option value="2" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 2 ); ?>>Female</option>
+	</select>
+<?php
 }
 
+// This 
 function tds_happytails_textarea_field_3_render() { 
+	// Get the options
 	$options = get_option( 'tds_happytails_settings' );
 	?>
 	<textarea cols="40" rows="5" name="tds_happytails_settings[tds_happytails_textarea_field_3]"> 

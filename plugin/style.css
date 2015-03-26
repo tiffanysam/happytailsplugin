@@ -8,6 +8,8 @@
  * Author URI: http://codediva.com
  */
  
+ 
+ /* Provides a solid border and padding for the navigation area where the user enters the content they wish to filter */
  nav {
   display: block;
   border: 1px solid #888;
@@ -17,6 +19,8 @@ label {
   margin-left: 5px;
   font-weight: bold;
 }
+
+/* Provides styling for the filtered content that shows up in the table */
 table {
   border: 1px solid gray;
   margin-top: 10pt;
@@ -31,37 +35,41 @@ table th {
   font-size: 14pt;
   padding: 3pt;
 }
-table td.lastname {
+table td.Pet_species {
   width: 200px;
 }
-table td.firstname {
+table td.Pet_name {
   width: 150px;
 }
-table td.school {
+table td.Pet_age {
   width: 150px;
 }
-table td.grade {
+table td.Pet_gender {
   width: 75px;
 }
-table td.score {
+table td.Pet_breed {
   width: 150px;
 }
 
-.studentRec {
+
+.petRec {
   border: 1px solid #777;
   margin: 4pt;
   padding: 4pt;
   font-size: 14pt;
   background-color: #ccc;
 }
-.passingStudent {
+
+/* This filters the species by colour - the species they searched for will appear in green, the ones they don't want will appear in red */
+.filteredSpecies {
   background-color: lightGreen;
 }
-.failingStudent {
+.unfilteredSpecies {
   background-color: pink;
 }
 
-.studentCard {
+/* Provides styling for filtered  */
+.pet_Name {
   display: inline-block;
   width: 400px;
   height: 200px;
@@ -72,27 +80,28 @@ table td.score {
 .particulars {
   font-size: 18pt;
   padding: 10px;
+  
 }
-.cardGrade {
+.Name {
   float: right;
 }
-.cardScores {
+.petScores {
   margin-top: 20px;
 }
  
-/* This is the style for templates files */
+/* This is the style for pet records */
      <style type="text/css">
-    .studentRec {
+    .petRec {
       border: 1px solid #777;
       margin: 4pt;
       padding: 4pt;
       font-size: 14pt;
       background-color: #ccc;
     }
-    .passingStudent {
+    .filteredSpecies {
       background-color: lightGreen;
     }
-    .failingStudent {
+    .unfilteredSpecies {
       background-color: pink;
     }
     </style>
