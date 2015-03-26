@@ -8,20 +8,11 @@
  * Author URI: http://phoenix.sheridanc.on.ca/~ccit2662
  */
 
-// Add Self-Closing Shortcode
-function my_shortcode() {
-return "<p>I&apos;m a super-awesome
-shortcode coder</p>";
-}
-add_shortcode( 'my_shortcode',
-'my_shortcode' );.
-
 function tds_happytails_add_admin_menu(  ) { 
 
 	add_menu_page( 'Happy Tails Plugin', 'Happy Tails Plugin', 'manage_options', 'happy_tails_plugin', 'happy_tails_plugin_options_page', 'dashicons-admin-network', 66 );
 
 }
-
 
 function tds_happytails_settings_init(  ) { 
 
@@ -33,7 +24,9 @@ function tds_happytails_settings_init(  ) {
 		'tds_happytails_settings_section_callback', 
 		'plugin_page'
 	);
-
+	
+// Creates fields in the back end for the user to enter characteristics of the pet. The user can enter these characteristics in the fields and it will be displayed on the site.
+// This is the field for inputting the name of the pet	
 	add_settings_field( 
 		'tds_happytails_text_field_0', 
 		__( 'Enter name', 'TDS' ), 
@@ -42,6 +35,7 @@ function tds_happytails_settings_init(  ) {
 		'tds_happytails_plugin_page_section' 
 	);
 
+// This is the field for inputting the age of the pet.	
 	add_settings_field( 
 		'tds_happytails_text_field_1', 
 		__( 'Enter age', 'TDS' ), 
@@ -49,39 +43,33 @@ function tds_happytails_settings_init(  ) {
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
-	
-	add_settings_field( 
-		'tds_happytails_text_field_', 
-		__( 'Enter breed', 'TDS' ), 
-		'tds_happytails_text_field_0_render', 
-		'plugin_page', 
-		'tds_happytails_plugin_page_section' 
-	);
 
+// This is the field for inputting the name of the pet. There are two options (female or male) that appear as radio buttons so the user can only choose one.
 	add_settings_field( 
 		'tds_happytails_radio_field_2', 
-		__( 'Choose an option', 'TDS' ), 
+		__( 'Choose gender', 'TDS' ), 
 		'tds_happytails_radio_field_2_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
 
+// This is the field for inputting the breed of the pet.
 	add_settings_field( 
 		'tds_happytails_textarea_field_3', 
-		__( 'Enter content into the text area', 'TDS' ), 
+		__( 'Enter breed', 'TDS' ), 
 		'tds_happytails_textarea_field_3_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
 
+// This is the field for choosing the species of the pet. This appears as a dropdown menu, where the user can select one of the three (cat, dog, fish) options.
 	add_settings_field( 
 		'tds_happytails_select_field_4', 
-		__( 'Choose from the dropdown', 'TDS' ), 
+		__( 'Choose species', 'TDS' ), 
 		'tds_happytails_select_field_4_render', 
 		'plugin_page', 
 		'tds_happytails_plugin_page_section' 
 	);
-
 
 }
 
@@ -92,22 +80,20 @@ function tds_happytails_text_field_0_render() {
 	<?php
 }
 
-
 function tds_happytails_checkbox_field_1_render() { 
 	$options = get_option( 'tds_happytails_settings' );
 	?>
-	<input type="checkbox" name="tds_happytails_settings[tds_happytails_checkbox_field_1]" <?php if (isset($options['tds_happytails_checkbox_field_1'])) checked( $options['tds_happytails_checkbox_field_1'], 1 ); ?> value="1">
+	<input type="checkbox" name="tds_happytails_settings[tds_happytails_checkbox_field_1]" <?php if (isset($options['tds_happytails_checkbox_field_1'])) checked( $options['tds_happytails_checkbox_field_1'], 1 ); ?> value="">
 	<?php
 }
 
-
+// This shows the radio button values (gender) and tells the plugin to display the value of the chosen radio button in the front end.
 function tds_happytails_radio_field_2_render() { 
 	$options = get_option( 'tds_happytails_settings' );
 	?>
-	<input type="radio" name="tds_happytails_settings[tds_happytails_radio_field_2]" <?php if (isset($options['tds_happytails_radio_field_2'])) checked( $options['tds_happytails_radio_field_2'], 1 ); ?> value="1">
+	<input type="radio" name="tds_happytails_settings[tds_happytails_radio_field_2]" value="female"> <?php if (isset($options['tds_happytails_radio_field_2'])) checked( $options['tds_happytails_radio_field_2'], 1 ); ?> value="<?php if (isset($options['tds_happytails_text_field_0'])) echo $options['tds_happytails_radio_field_2']; ?>">
 	<?php
 }
-
 
 function tds_happytails_textarea_field_3_render() { 
 	$options = get_option( 'tds_happytails_settings' );
@@ -118,13 +104,14 @@ function tds_happytails_textarea_field_3_render() {
 	<?php
 }
 
-
+// This shows the three values in the dropdown menu.
 function tds_happytails_select_field_4_render() { 
 	$options = get_option( 'tds_happytails_settings' );
 	?>
 	<select name="tds_happytails_settings[tds_happytails_select_field_4]">
-		<option value="1" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 1 ); ?>>Option 1</option>
-		<option value="2" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 2 ); ?>>Option 2</option>
+		<option value="1" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 1 ); ?>>Cat</option>
+		<option value="2" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 2 ); ?>>Dog</option>
+		<option value="3" <?php if (isset($options['tds_happytails_select_field_4'])) selected( $options['tds_happytails_select_field_4'], 3 ); ?>>Fish</option>
 	</select>
 <?php
 }
@@ -133,7 +120,6 @@ function tds_happytails_select_field_4_render() {
 function tds_happytails_settings_section_callback() { 
 	echo __( 'More of a description and detail about the section.', 'TDS' );
 }
-
 
 function happy_tails_plugin_options_page() { 
 	?>
