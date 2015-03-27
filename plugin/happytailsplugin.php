@@ -10,11 +10,9 @@
 
 // Add Self-Closing shortcode. The user can add the code [my_shortcode] to any page to put this plugin specifically on that page. 
 function my_shortcode() {
-return "<p>I&apos;m a happy-tails
-shortcode coder</p>";
+return "<p>I&apos;m a happytailsplugin shortcode coder</p>";
 }
-add_shortcode( 'my_shortcode',
-'my_shortcode' ); 
+add_shortcode( 'my_shortcode', 'my_shortcode' ); 
 
 // Creates an administrative menu in the back end, where the user can customize information in the plugin. 
 function tds_happytails_add_admin_menu(  ) { 
